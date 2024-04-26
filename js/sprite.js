@@ -14,14 +14,40 @@ class Sprite {
         this.idle_state = ["idle","idleBackAndForth","idleBreathing","idleFall","idleLayDown","idleLookAround",
                             "idleLookDown","idleLookLeft","idleLookRight","idleLookUp","idleSit","idleSpin","idleWave"];
 
-        this.x_v = 0;
-        this.y_v = 0;
+        this.velocity = new Vector(10,10);
+        this.x_v = 10;
+        this.y_v = 10;
+    }
+
+    align(sprites){
+        let perceptionRadius = 50;
+        let avg_x_v = 0;
+        let avg_y_v = 0;
+        let counted_sprites = 0;
+        for(let sprite of sprites){
+
+            let x_dist = Math.pow((sprite.x - this.x), 2);
+            let y_dist = Math.pow((sprite.y - this.y), 2);
+            let dist = Math.sqrt(x_dist + y_dist);
+
+
+            if(sprite != this && dist < perceptionRadius){
+                avg_x_v += sprite.x_v;
+                avg_y_v += sprite.y_v;
+                counted_sprites++;
+            }
+        }
+        if(total>0){
+            avg_x_v /= counted_sprites;
+            avg_y_v /= counted_sprites;
+        }
+
     }
 
     draw(status){
         var previous_state = this.state;
-        this.take_direction(status['key_input']);
-        console.log(status['key_input']);
+        // this.take_direction(status['key_input']);
+        // console.log(status['key_input']);
         this.change_state();
 
         if(previous_state != this.state){
@@ -63,12 +89,13 @@ class Sprite {
         }else if(this.y <= 0){
             this.bound_hit('N');
         }else{
+            // this.x = this.x + this.velocity.x;
             this.x = this.x + this.x_v;
             this.y = this.y + this.y_v;
         }
 
-        console.log("X velocity: " + this.x_v);
-        console.log("Y velocity: " + this.y_v);
+        // console.log("X velocity: " + this.x_v);
+        // console.log("Y velocity: " + this.y_v);
 
         
     }
@@ -145,20 +172,25 @@ class Sprite {
 
     bound_hit(side){
         if(side == 'N'){
-            this.y += 10;
+            this.y += 1;
+            this.y_v = 10;
         }
         else if(side == 'S'){
-            this.y -= 10;
+            this.y -= 1;
+            this.y_v = -10;
         }
         else if(side == 'W'){
-            this.x += 10;
+            this.x += 1;
+            this.velocity = new Vector(10, this.velocity.y);
         }
         else if(side == 'E'){
-            this.x -= 10;
+            this.x -= 1;
+            this.velocity = new Vector(-10, this.velocity.y);
+            console.log("Velocity x:", this.velocity.x);
         }
-        if(!(this.idle_state.includes(this.state))){
-            this.set_idle_state();
-        }
+        // if(!(this.idle_state.includes(this.state))){
+        //     this.set_idle_state();
+        // }
    } 
 
 

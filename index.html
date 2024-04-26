@@ -2,7 +2,7 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
+<script src="js/vector.js"></script>
 <script src="js/sprite.js"></script>
 
 
@@ -29,9 +29,9 @@
     sprites_to_draw[1] = new Array(0); //forground
 
     $.getJSON( "Penguins/animationData.json", function( data ) {
-        //sprites_to_draw[1].push( new Sprite(data, 0 ,0, "idleSpin") );
-        //sprites_to_draw[1].push( new Sprite(data, 100 ,100, "idleWave") );
-        sprites_to_draw[1].push( new Sprite(data, 200 ,600, "idle") );
+        sprites_to_draw[1].push( new Sprite(data, 600 ,500, "idleSpin") );
+        sprites_to_draw[1].push( new Sprite(data, 400 ,500, "idleWave") );
+        sprites_to_draw[1].push( new Sprite(data, 200 ,500, "idle") );
 
     });
 
