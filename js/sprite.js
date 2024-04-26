@@ -46,8 +46,6 @@ class Sprite {
 
     draw(status){
         var previous_state = this.state;
-        // this.take_direction(status['key_input']);
-        // console.log(status['key_input']);
         this.change_state();
 
         if(previous_state != this.state){
@@ -63,15 +61,6 @@ class Sprite {
             this.sprite_json[this.root_e][this.state][this.cur_frame]['img'] = new Image();
             this.sprite_json[this.root_e][this.state][this.cur_frame]['img'].src = 'Penguins/' + this.root_e + '/' + this.state + '/' + this.cur_frame + '.png';
         }
-        
-        // if( this.cur_bk_data != null){
-        //     ctx.putImageData(this.cur_bk_data , (this.x - this.x_v) , (this.y - this.y_v));
-        // }
-
-        // this.cur_bk_data = ctx.getImageData(this.x, this.y, 
-        //                 this.sprite_json[this.root_e][this.state][this.cur_frame]['w'], 
-        //                 this.sprite_json[this.root_e][this.state][this.cur_frame]['h']);
-
 
         ctx.drawImage(this.sprite_json[this.root_e][this.state][this.cur_frame]['img'], this.x, this.y );
 
@@ -89,8 +78,8 @@ class Sprite {
         }else if(this.y <= 0){
             this.bound_hit('N');
         }else{
-            // this.x = this.x + this.velocity.x;
-            this.x = this.x + this.x_v;
+            this.x = this.x + this.velocity.x;
+            // this.x = this.x + this.x_v;
             this.y = this.y + this.y_v;
         }
 
