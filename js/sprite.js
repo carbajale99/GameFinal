@@ -17,7 +17,7 @@ class Sprite {
         this.velocity = new Vector(Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 10) + 1);
         this.acceleration = new Vector(0,0);
     }
-
+    //hihi
     align(sprites){
         let alignment = new Vector(0,0);
         let perceptionRadius = 150;
