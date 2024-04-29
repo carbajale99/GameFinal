@@ -29,9 +29,9 @@
     sprites_to_draw[1] = new Array(0); //forground
 
     $.getJSON( "Penguins/animationData.json", function( data ) {
-        sprites_to_draw[1].push( new Sprite(data, 600 ,500, "idleSpin") );
-        sprites_to_draw[1].push( new Sprite(data, 400 ,500, "idleWave") );
-        sprites_to_draw[1].push( new Sprite(data, 200 ,500, "idle") );
+        sprites_to_draw[1].push( new Sprite(data, 800 ,100, "idleSpin") );
+        sprites_to_draw[1].push( new Sprite(data, 500 ,300, "idleWave") );
+        sprites_to_draw[1].push( new Sprite(data, 100 ,500, "idle") );
 
     });
 
@@ -45,23 +45,7 @@
 
     window.addEventListener('resize', resize);
 
-    document.body.onkeydown = function(e){
-        if(e.keyCode == up_arrow){
-            key_input = up_arrow;
-        }
-        else if(e.keyCode == down_arrow){
-            key_input = down_arrow;
-        }
-        else if(e.keyCode == left_arrow){
-            key_input = left_arrow;
-        }
-        else if(e.keyCode == right_arrow){
-            key_input = right_arrow;
-        }
-    };
-    document.body.onkeyup = function(e){
-        key_input = 4;
-    };
+
 
     function draw_loop(){
         
@@ -82,7 +66,8 @@
 
         //Draw forground sprites
         for(var i = 0; i < forground_length; i++){
-            sprites_to_draw[1][i].draw({'key_input': key_input});
+            sprites_to_draw[1][i].draw({'key_input': key_input,
+                                        'sprites': sprites_to_draw[1]});
         }
     }
 
