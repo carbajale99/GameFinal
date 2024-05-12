@@ -26,7 +26,7 @@ class Sprite {
 
         this.imagesMap = map;
     }
-    //hihi
+
     align(sprites){
         let perceptionRadius = 100;
         let alignment = createVector();
