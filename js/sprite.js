@@ -26,6 +26,7 @@ class Sprite {
         this.imagesMap = map;
     }
 
+
     yay(sprites){
         for (let boid of sprites) {
             if (boid !== this && dist(this.position.x, this.position.y, boid.position.x, boid.position.y) < 50) {
