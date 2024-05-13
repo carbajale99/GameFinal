@@ -25,7 +25,19 @@ class Sprite {
 
         this.imagesMap = map;
     }
-    //hihi
+
+
+    yay(sprites){
+        for (let boid of sprites) {
+            if (boid !== this && dist(this.position.x, this.position.y, boid.position.x, boid.position.y) < 50) {
+                textSize(20);
+                fill(0);
+                text("Yay!", this.position.x + 40, this.position.y - 10);
+                break;
+            }
+        }
+    }
+
     align(sprites){
         let perceptionRadius = 100;
         let alignment = createVector();
@@ -118,6 +130,8 @@ class Sprite {
         let alignment = this.align(sprites);
         let cohesion = this.cohesion(sprites);
         let seperation = this.seperate(sprites);
+
+        this.yay(sprites);
         
         this.acceleration.add(alignment);
         this.acceleration.add(cohesion);
