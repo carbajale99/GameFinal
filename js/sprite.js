@@ -88,7 +88,7 @@ class Sprite {
             cohesion.sub(this.velocity); 
             cohesion.limit(this.maxForce);
         }
-        cohesion.div(10);
+        cohesion.div(5);
         return cohesion;
     }
     
@@ -122,7 +122,7 @@ class Sprite {
  
         }
       
-        seperation.mult(10);
+        seperation.mult(20);
         return seperation;
     }
     
